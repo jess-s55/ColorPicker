@@ -1,25 +1,21 @@
 import { useState } from 'react';
 
 // Write your Color component here
-const Color = ({color, setSelectedColor}) => {
+
+
+
+const Color = ({color, setSelectedColor, selected}) => {
+  let classes = color;
+  if (selected === color) {
+    classes += " selected"
+  }
   return (
-    <div 
-      className={color} 
-      onClick={() => setSelectedColor(color)} 
+    <div
+      className={classes}
+      onClick={() => setSelectedColor(color)}
      ></div>
   )
-}
-
-// const Color = (props) => {
-//   return <div className={props.color}></div>
-// }
-
-/* or using object deconstruction */
-// const Color = ({color}) => {
-//   return <div className={color}></div>
-// }
-
-
+};
 
 const App = () => {
   const [selectedColor, setSelectedColor] = useState("")
@@ -27,15 +23,16 @@ const App = () => {
     <div id="container">
       <div id="navbar">
         <div>Currently selected: </div>
-        <div className={selectedColor}>{selectedColor}</div>
+        <div className={selectedColor}>{selectedColor} </div>
       </div>
       <div id="colors-list">
-        <Color color="blue" setSelectedColor={setSelectedColor}/>
-       <Color color="red" setSelectedColor={setSelectedColor}/>
-        <Color color="green" setSelectedColor={setSelectedColor}/>
+        <Color selected={selectedColor} color="blue" setSelectedColor={setSelectedColor}/>
+        <Color selected={selectedColor} color="red" setSelectedColor={setSelectedColor}/>
+        <Color selected={selectedColor} color="green" setSelectedColor={setSelectedColor}/>
       </div>
     </div>
   );
 };
+
 
 export default App;
